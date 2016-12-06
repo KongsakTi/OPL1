@@ -1,0 +1,25 @@
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Promise
+
+case class TaxCut(reduction: Int)
+val taxcut = Promise[TaxCut]() // promise is container, which has future's object
+val taxcutFuture = taxcut.future 
+taxcutFuture.onSuccess{case result=> println(result)} // if future(taxcut) is completed it will come back
+taxcut.success(TaxCut(20))
+
+val hwPromise = Promise[String]()
+val hwF = hwPromise.future
+val hwF2 = hwF.map{s=>" ^^ " + s + " T T"}
+hwF2.onSuccess{case res=> println("in 2:"+res)}
+hwPromise.success("Asgmnt 5 and 6")
+
+
+
+
+
+
+
+
+
+

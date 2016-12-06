@@ -1,0 +1,9 @@
+val xs = Vector(3,124,43,5,3,3,2,3425,6,7,43,4,1,23,4,5,3,5,4,1)
+
+val xsp = xs.par
+
+val ys = (1 to 1000000).toVector.par
+ys.sum
+
+
+

@@ -1,0 +1,58 @@
+Future (concurrency)
+
+import scala.concurrent.ExecutionContext.Implicits.global //first thing to import 
+
+import scala.concurrent.Future
+
+def fib(n: Int): Long = if(n<2) 1 else fib(n-1) + fib(n-2)
+
+val f1 = Future{fib(45)}
+f1.value // get the val = Some(Success(1836311903))
+         // not done = None
+
+import scala.util.{Success,Failure}
+
+f1.onSuccess{ case result => println(result)} // to make it print the result when thread gives Success in running.
+f1.onFailure                                  // to make it print the result when thread gives Failure in running.
+f1.onComplete{
+    case Success(v) => println("Good $v")
+    case Failure(e) => println("Error: " + e.getMessage)
+}
+
+def fib(n: Int): Long = if(n>48) throw new Exception("Too large") else { if (n<2) 1 else fib(n-1) + fib(n-2) }
+
+Future return Nothing
+
+
+******************************************************************************************************************
+
+Making Cappuccino
+
+1 Grind coffe beans
+2 Heat water
+3 Brew 1 & 2
+4 Froth milk
+5 Combine (3 & 4)
+
+grind("beans").flatMap{ ground =>
+  heatWater(Water)..........
+  .......
+  .............map{
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
